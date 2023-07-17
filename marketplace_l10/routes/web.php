@@ -1,7 +1,8 @@
 <?php
 
+use App\Http\Controllers\Admin\{SupportController};
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\Site\SiteController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,6 +14,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+route::get('/contato', [SiteController::class, 'contact']);
+
 Route::get('/', function () {
     return view('welcome');
 });
+
+route::get('/supports', [SupportController::class, 'index'])->name('supports.index');
