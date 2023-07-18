@@ -14,10 +14,14 @@ use App\Http\Controllers\Site\SiteController;
 |
 */
 
+route::post('/supports', [SupportController::class, 'store'])->name('supports.store');
+route::get('/supports/create', [SupportController::class, 'create'])->name('supports.create');
+route::get('/supports', [SupportController::class, 'index'])->name('supports.index');
+
 route::get('/contato', [SiteController::class, 'contact']);
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-route::get('/supports', [SupportController::class, 'index'])->name('supports.index');
+
