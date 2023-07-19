@@ -13,9 +13,11 @@ use App\Http\Controllers\Site\SiteController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
-route::post('/supports', [SupportController::class, 'store'])->name('supports.store');
+route::put('/supports/{id}', [SupportController::class, 'update'])->name('supports.update');
+route::get('/supports/{id}/edit', [SupportController::class, 'edit'])->name('supports.edit');
 route::get('/supports/create', [SupportController::class, 'create'])->name('supports.create');
+route::get('/supports/{id}', [SupportController::class, 'show'])->name('supports.show');
+route::post('/supports', [SupportController::class, 'store'])->name('supports.store');
 route::get('/supports', [SupportController::class, 'index'])->name('supports.index');
 
 route::get('/contato', [SiteController::class, 'contact']);

@@ -1,11 +1,12 @@
 <h1>Listagem de suportes</h1>
 <a href="{{route('supports.create')}}">Criar duvida</a>
-<table>
+<table border="3" style="padding: 5px">
     <thead>
         <th>Assunto</th>
         <th>Status</th>
         <th>Descrição</th>
-        <th></th>
+        <th>Ver detalhes</th>
+        <th>Editar</th>
     </thead>
     <tbody>
         @foreach($supports as $support)
@@ -13,9 +14,10 @@
                 <td>{{ $support->subject }}</td>
                 <td>{{ $support->status }}</td>
                 <td>{{ $support->body }}</td>
-                <td>
-                    <!-- Adicione o link ou botão de ação desejado aqui -->
-                </td>
+
+                <td><a href="{{ route('supports.show', $support->id) }}">---></a></td>
+
+                <td><a href="{{ route('supports.edit', $support->id) }}">Editar</a></td>
             </tr> 
         @endforeach
     </tbody>
