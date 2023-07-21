@@ -13,6 +13,8 @@ use App\Http\Controllers\Site\SiteController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+route::delete('/supports/{id}', [SupportController::class, 'destroy'])->name('supports.destroy');
+
 route::put('/supports/{id}', [SupportController::class, 'update'])->name('supports.update');
 route::get('/supports/{id}/edit', [SupportController::class, 'edit'])->name('supports.edit');
 route::get('/supports/create', [SupportController::class, 'create'])->name('supports.create');
