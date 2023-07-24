@@ -6,6 +6,8 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Support;
 use Illuminate\Http\Request;
 use App\DTO\CreateSupportDTO;
+use App\DTO\UpdateSupportDTO;
+use App\Services\SupportService;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreUpdateSupport;
 
@@ -14,9 +16,9 @@ class SupportController extends Controller
     public function __construct(protected SupportService $service){}
 
 
-    public function index(Support $support){
+    public function index(Request $request, Support $support){
 
-        $supports = $this->service_>getAll($request->filter);
+        $supports = $this->service->getAll($request->filter);
         
         return view('Admin/Supports/index', compact('supports'));
     } 
@@ -42,6 +44,7 @@ class SupportController extends Controller
 
 
     public function store(StoreUpdateSupport $request, Support $support){
+        
        $this->service->new(CreateSupportDTO::makeFromRequest($request));
        
     
@@ -61,6 +64,7 @@ class SupportController extends Controller
             return view('admin/supports.edit', compact('support'));
    }
 
+
    public function update(StoreUpdateSupport $request, Support $support, string $id){
      
         $support = $this->service->update(UpdateSupportDTO::makeFromRequest($request));
@@ -71,6 +75,10 @@ class SupportController extends Controller
 
         return redirect()->route('supports.index');
    }
+
+
+
+
 
    public function destroy(string $id){
         
