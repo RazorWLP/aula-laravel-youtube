@@ -1,8 +1,9 @@
 <?php
 
-use App\Http\Controllers\Admin\{SupportController};
+use App\Enums\SupportStatus;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Site\SiteController;
+use App\Http\Controllers\Admin\{SupportController};
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,6 +14,9 @@ use App\Http\Controllers\Site\SiteController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+route::get('/teste', function(){
+    dd(array_column(SupportStatus::cases(), 'name'));
+});
 route::delete('/supports/{id}', [SupportController::class, 'destroy'])->name('supports.destroy');
 
 route::put('/supports/{id}', [SupportController::class, 'update'])->name('supports.update');

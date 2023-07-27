@@ -5,8 +5,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Support;
 use Illuminate\Http\Request;
-use App\DTO\CreateSupportDTO;
-use App\DTO\UpdateSupportDTO;
+use App\DTO\Supports\CreateSupportDTO;
+use App\DTO\Supports\UpdateSupportDTO;
 use App\Services\SupportService;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreUpdateSupport;
@@ -20,13 +20,13 @@ class SupportController extends Controller
 
         $supports = $this->service->paginate(
             page: $request->get('page', 1),
-            totalPerPage: $request->get('per_page', 15),
+            totalPerPage: $request->get('per_page', 1),
             filter: $request->filter,
         );
 
-     
+        $filters = ['filter' => $request->get('filter', '')];
         
-        return view('Admin/Supports/index', compact('supports'));
+        return view('Admin/Supports/index', compact('supports', 'filters'));
     } 
 
 
