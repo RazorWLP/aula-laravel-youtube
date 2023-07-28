@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Adapters\ApiAdapter;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Services\SupportService;
@@ -28,17 +29,7 @@ class SupportControllerApi extends Controller
             filter: $request->filter,
         );
 
-        return SupportResource::collection($supports->items())
-                                ->additional([
-                                    'meta' =>[
-                                        'total' => $supports->total(),
-                                        'is_first_page' => $supports->isFirstPage(),
-                                        'is_last_page' => $supports->isLastPage(),
-                                        'current_page' => $supports->currentPage(),
-                                        'next_page' => $supports->getNumberNextPage(),
-                                        'previous_page' =>$supports->getNumberPreviousPage(),
-                                    ]
-                                ]);
+        return ApiAdapter::toJson($supports);
         ;
     }
 
